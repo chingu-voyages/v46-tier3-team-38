@@ -21,12 +21,13 @@ app.use(cors(corsOptions));
 
 
 app.get('/recipeInfo/:recipeID', async (req, res) => {
-    try {
-        const recipeInfo = await getSpecificRecipeInfo(req.params.recipeID);
+
+    getSpecificRecipeInfo(req.params.recipeID).then((recipeInfo) => {
         res.status(200).send(recipeInfo);
-    } catch (error) {
+    }).catch((error) => {
         res.status(400).send(error);
-    }
+    })
+
 });
 
 app.listen(port, () => {

@@ -1,15 +1,15 @@
-const axios=require('axios');
+const axios = require('axios');
 require('dotenv').config();
 const getSpecificRecipeInfo = async (recipeID) => {
     const options = {
         method: 'GET',
         url: `https://api.edamam.com/api/recipes/v2/${recipeID}`,
         params: {
-            id: recipeID,
-            type: 'public',
-            beta: 'true',
-            app_id: process.env.EDAMAM_APP_ID,
-            app_key: process.env.EDAMAM_APP_KEY,
+            'id': recipeID,
+            'type': 'public',
+            'beta': 'true',
+            'app_id': process.env.EDAMAM_APP_ID,
+            'app_key': process.env.EDAMAM_APP_KEY,
         },
         headers: {
             'Accept-Language': 'en',
@@ -26,4 +26,4 @@ const getSpecificRecipeInfo = async (recipeID) => {
 
 }
 
-module.exports=getSpecificRecipeInfo;
+module.exports = { getSpecificRecipeInfo };
