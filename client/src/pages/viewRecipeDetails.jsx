@@ -1,19 +1,31 @@
 import Ingredients from "../components/ingredients";
 import Instructions from "../components/instructions";
 import Equipments from "../components/equipments";
-// import { useState } from "react";
+import RecipeImageAndTitle from "../components/recipeImageAndTitle";
+import { useEffect } from "react";
+import axios from 'axios';
 
-const viewRecipeDetails = () => {
-  // const [equipments,setEquipments] = useState([]);
+const ViewRecipeDetails = () => {
+  useEffect(()=>{
+    getRecipeDetail();
+  },[]);
+  async function getRecipeDetail(){
+    const recipeDetail=await axios.get('https://localhost:3000/recipeInfo/');
+    console.log(recipeDetail);
+  }
+  const recipeImage="";
+  const recipeTitle="";
+  const ingredients=[];
   const equipments=[];
-  return (
-    <div>
-      <Ingredients />
-
+  const instructions=[];
+  return (false && 
+    <div className="flex-col gap-5 flex-nowrap">
+      <RecipeImageAndTitle recipeImage={recipeImage} recipeTitle={recipeTitle}/>
+      <Ingredients ingredients={ingredients}/>
       <Equipments equipments={equipments} />
-      <Instructions />
+      <Instructions instructions={instructions}/>
     </div>
   )
 }
 
-export default viewRecipeDetails;
+export default ViewRecipeDetails;
