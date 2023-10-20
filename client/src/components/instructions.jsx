@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 const instructions = ({ instructions }) => {
   const numberOfSteps = instructions.length;
   return (
-    <div>
+    <div className='px-4 pb-8'>
       <p className="text-black text-xl font-bold font-['Inter'] leading-loose tracking-wide mb-3">Instructions<span className="opacity-50 text-black text-xs font-normal font-['Helvetica'] leading-tight">{`  ${numberOfSteps} Steps`}</span></p>
-      <div className='flex flex-col gap-2'>
+      <div className='flex flex-col gap-2 w-full'>
         {instructions.map((stepInfo, stepIndex) => (
           <div key={stepIndex} className='p-2.5 bg-white rounded-md shadow-md justify-start items-start flex flex-col gap-2'>
             <p className="text-black text-sm font-bold font-['Abhaya Libre'] leading-tight">{`Step ${stepIndex+1}`}<span className="text-neutral-400 text-[0.7rem] font-normal font-['Helvetica'] leading-tight">{'/'+numberOfSteps}</span>
