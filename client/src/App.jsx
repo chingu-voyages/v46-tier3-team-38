@@ -1,14 +1,15 @@
-import './App.css'
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import UserLoginPage from "./pages/UserLoginPage";
 
 function App() {
   return (
-    <>
-      <div>
-        <div className="text-xl font-medium text-red-600">Recigo</div>
-        <p className="text-slate-500">You have a new recipe!</p>
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<UserLoginPage />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default App
+export default App;
