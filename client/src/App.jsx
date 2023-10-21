@@ -1,17 +1,17 @@
-import './App.css'
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import UserLoginPage from "./pages/UserLoginPage";
 import SearchBox from './components/SearchBox';
 
 function App() {
-
   return (
-    <>
-      <div>
-        <div class="text-xl font-medium text-red-600">Recigo</div>
-        <p class="text-slate-500">You have a new recipe!</p>
-        <SearchBox />
-      </div>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<UserLoginPage />} />
+        <Route path="/explore" element={<SearchBox />} />
+      </Routes>
+    </Router>
   );
 }
 
-export default App
+export default App;
