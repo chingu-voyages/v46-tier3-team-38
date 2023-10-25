@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import RecipeList from "../components/explore/RecipeList";
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const recipeData =[

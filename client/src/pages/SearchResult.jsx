@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RecipeList from "../components/explore/RecipeList";
-import axios from 'axios';
 import backendAPI from "../helper/BackendApi";
 
 
@@ -19,7 +18,6 @@ export default function SearchResult(){
         console.log(`is this running?`)
         try{
             const response = await backendAPI.searchRecipe(term);
-            console.log("🚀 ~ file: SearchResult.jsx:22 ~ getRecipes ~ response:", response)
             setRecipes(response);
         } catch(e){
             console.log('something went wrong inside useEffect', e)

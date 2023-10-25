@@ -1,7 +1,5 @@
 import RecipeCard from "./RecipeCard";
 
-
-
 export default function RecipeList({recipes}){
     return(
         <section className="mt-5">
