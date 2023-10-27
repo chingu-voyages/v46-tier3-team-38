@@ -2,16 +2,17 @@ import axios from 'axios';
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
-class backendAPI{
+class BackendAPI{
     static async searchRecipe(term){
-        let response = await axios.get(`${BASE_URL}/search/?q=${term}`, {
-            headers: {
-              'origin' : 'http://localhost:5173'
-            }
-          });
+        let response = await axios.get(`${BASE_URL}/search/?q=${term}`);
         return response.data
+    }
+    
+    static async getRandomRecipe(){
+      let response = await axios.get(`${BASE_URL}/random`);
+    return response.data
     }
 }
 
 
-export default backendAPI;
+export default BackendAPI;
