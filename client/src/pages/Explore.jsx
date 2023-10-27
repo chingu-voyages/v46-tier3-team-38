@@ -73,10 +73,20 @@ const recipeData =[
 export default function Explore(){
     const navigate = useNavigate();
     const [searchTerm, setSearchTerm] = useState("");
+    const [error, setError] = useState("");
 
     function handleSubmit(e){
         e.preventDefault();
-        navigate(`/result/${searchTerm}`);
+        if(!searchTerm){
+            setError("You cannot search an empty word.");
+        } else{
+            navigate(`/result/${searchTerm}`);
+        }
+    }
+
+    function handleChange(e){
+        setSearchTerm(e.target.value);
+        setError("");
     }
     
     return(
@@ -90,11 +100,12 @@ export default function Explore(){
                         type="text"
                         id="term"
                         name="term"
-                        onChange={(e)=>setSearchTerm(e.target.value)}
+                        onChange={handleChange}
                         className="bg-gray-200 grow focus:outline-none focus:bg-gray-200 max-w-full"
                         placeholder="What are you craving?"
                     />
                 </form>
+                <p className="text-left text-red-500 font-bold"><small>{error}</small></p>
             </section>
         </div>
         <h2 className="font-bold text-xl mt-5">Popular dishes</h2>
