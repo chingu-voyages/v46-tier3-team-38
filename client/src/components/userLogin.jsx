@@ -1,4 +1,5 @@
-import { useState } from "react";
+import * as React from "react";
+import { Link } from "react-router-dom";
 import recigo1 from "../../src/recigo1.png";
 
 const userLogin = () => {
@@ -21,7 +22,7 @@ const userLogin = () => {
           </p>
         </div>
         <section>
-          <div className=" m-10">
+          <div className="m-10">
             <form className="mt-8 p-4 rounded-lg shadow-md text-center w-96">
               <h2 className="text-xl font-semibold leading-loose">Sign In</h2>
               <label>
@@ -41,7 +42,9 @@ const userLogin = () => {
                 </button>
                 <h2 className="text-xl font-semibold leading-loose">
                   Need An Account? Sign Up{" "}
-                  <span className="text-orange-400 select-all">Here</span>
+                  <span className="text-orange-400 select-all">
+                    <Link to="/registration">Here</Link>
+                  </span>
                 </h2>
               </div>
             </form>
