@@ -13,6 +13,7 @@ const getSpecificRecipeInfo = async (recipeID) => {
         },
         headers: {
             'Accept-Language': 'en',
+            'origin': 'http://localhost:5173',
         }
     };
 

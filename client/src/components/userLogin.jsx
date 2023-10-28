@@ -3,7 +3,7 @@ import recigo1 from "../../src/recigo1.png";
 const userLogin = () => {
   return (
     <main>
-      <div className="h-screen flex flex-col justify-center items-center bg-yellow-50">
+      <div className="flex flex-col justify-center items-center bg-yellow-50">
         <div className="p-4 rounded-lg text-center">
           <img
             src={recigo1}

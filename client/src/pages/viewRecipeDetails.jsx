@@ -1,9 +1,10 @@
-import Ingredients from "../components/ingredients";
-import Instructions from "../components/instructions";
-import Equipments from "../components/equipments";
-import RecipeImageAndTitle from "../components/recipeImageAndTitle";
 // import { useEffect } from "react";
 // import axios from 'axios';
+import RecipeImageAndTitle from "../components/recipeImageAndTitle";
+import Tags from "../components/tags";
+import Ingredients from "../components/ingredients";
+import Instructions from "../components/instructions";
+// import Equipments from "../components/equipments";
 
 const ViewRecipeDetails = () => {
   // useEffect(() => {
@@ -15,6 +16,8 @@ const ViewRecipeDetails = () => {
   // }
   const recipeImage = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2IVD9VMxAcKGNrP6TXisYyYL7tXCQn94l919hm_uJLK6Yy1xXuo0D1KHNi6dONLfKn_w&usqp=CAU";
   const recipeTitle = "Chicken Alfredo";
+  const healthLabels = ['High-Fiber', 'Low-Fat', 'Vegan', 'Vegetarian', 'Dairy-Free', 'Gluten-Free', 'Egg-Free', 'Peanut-Free', 'Tree-Nut-Free', 'Soy-Free', 'Fish-Free', 'Shellfish-Free'];
+  const cautions =['Sulpites']
   const ingredients = [
     { "name": "8 oz fettuccine pasta", "calories": 800 },
     { "name": "2 chicken breasts (boneless, skinless)", "calories": 250 },
@@ -25,13 +28,13 @@ const ViewRecipeDetails = () => {
     { "name": "Salt and pepper to taste", "calories": 0 },
   ];
 
-  const equipments = [
-    "Large pot for cooking pasta",
-    "Skillet for cooking chicken and sauce",
-    "Wooden spoon",
-    "Tongs",
-    "Colander for draining pasta"
-  ]
+  // const equipments = [
+  //   "Large pot for cooking pasta",
+  //   "Skillet for cooking chicken and sauce",
+  //   "Wooden spoon",
+  //   "Tongs",
+  //   "Colander for draining pasta"
+  // ]
 
   const instructions = [
     "Bring a large pot of salted water to a boil. Add the fettuccine pasta and cook until al dente, according to package instructions. Drain and set aside.",
@@ -46,8 +49,9 @@ const ViewRecipeDetails = () => {
   return (
     <div className="flex flex-col gap-4 flex-nowrap bg-white">
       <RecipeImageAndTitle recipeImage={recipeImage} recipeTitle={recipeTitle} />
+      <Tags healthLabels={healthLabels} cautions={cautions}/>
       <Ingredients ingredients={ingredients} />
-      <Equipments equipments={equipments} />
+      {/* <Equipments equipments={equipments} /> */}
       <Instructions instructions={instructions} />
     </div>
   )
