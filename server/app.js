@@ -1,24 +1,45 @@
 const express = require("express");
 const cors = require('cors');
+const axios = require('axios');
 const { getSpecificRecipeInfo } = require('./getSpecificRecipeInfo');
+const { searchRecipe } = require('./searchRecipe');
 
 const app = express();
 const port = 3000;
 
-const allowedOrigins = ['http://localhost:5173'];
 
-const corsOptions = {
-    origin: function (origin, callback) {
-        if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
-};
+/** == 
+ * Murali sorry, for some reason I couldn't access from my frontend to backend without commenting out   this option 
+  my localhost was open localhost:5173 tho... 
+*/
 
-app.use(cors(corsOptions));
+// const allowedOrigins = ['http://localhost:5173'];
 
+// const corsOptions = {
+//     origin: function (origin, callback) {
+//         if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+//             callback(null, true);
+//         } else {
+//             callback(new Error('Not allowed by CORS'));
+//         }
+//     },
+// };
+
+// app.use(cors(corsOptions));
+app.use(cors());
+app.use(express.json());
+
+
+app.get('/search', async (req, res)=>{
+    let params = req.query;
+    console.log("🚀 ~ file: app.js:28 ~ app.get ~ params:", params)
+    try{
+        const response = await searchRecipe(params);
+        res.send(response.hits);
+    } catch(e){
+        console.log('error', e);
+    }
+});
 
 app.get('/recipeInfo/:recipeID', async (req, res) => {
 
