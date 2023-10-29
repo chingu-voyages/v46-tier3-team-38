@@ -1,3 +1,17 @@
+/**
+ * Equipments Component
+ *
+ * The equipments component displays all equipments related to recipe.
+ *
+ * @component
+ *
+ * @param {object} props - The component's properties.
+ * @param {string} props.equipments - Array of equipments for recipe.
+ *
+ * @returns {JSX.Element} - A React component that renders the equipments for recipe.
+*/
+
+
 import PropTypes from 'prop-types';
 
 const equipments = ({ equipments }) => {

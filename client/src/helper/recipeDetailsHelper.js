@@ -1,3 +1,11 @@
+import axios from 'axios';
+export async function getRecipeDetail(recipeID) {
+    const recipeDetail = await axios.get(`http://localhost:3000/recipeInfo/${recipeID}`, { 'Origin': 'http://localhost:5173/' });
+    const recipe = recipeDetail.data.recipe;
+    // console.log(recipe);
+    return recipe;
+}
+
 export function changeIngredientQuantity(numberOfPeopleToServing, ingredient) {
     // Use a regular expression to find both types of numbers.
     const numberRegex = /(\d+\/\d+|\d+)/g;

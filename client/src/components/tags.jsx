@@ -1,3 +1,18 @@
+/**
+ * Tags Component
+ *
+ * The Tags component displays healthy labels and cautions. It provides options to bookmark the recipe.
+ *
+ * @component
+ *
+ * @param {object} props - The component's properties.
+ * @param {string} props.healthLabels - Health Labels tags of the recipe.
+ * @param {string} props.cautions - Cautions tags of the recipe.
+ *
+ * @returns {JSX.Element} - A React component that renders the recipe health labels, cautions tags, and favorite buttons.
+*/
+
+
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
@@ -33,6 +48,9 @@ const Tags = ({ healthLabels, cautions }) => {
     );
 }
 
+/* The code `Tags.propTypes` is defining the prop types for the `Tags` component. It specifies that the
+`healthLabels` prop should be an array and the `cautions` prop should also be an array. This is a
+way to enforce type checking and ensure that the correct types of props are passed to the component. */
 Tags.propTypes = {
     healthLabels: PropTypes.array,
     cautions: PropTypes.array

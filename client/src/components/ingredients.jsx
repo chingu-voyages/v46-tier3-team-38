@@ -1,3 +1,18 @@
+/**
+ * Ingredients Component
+ *
+ * The Ingredients component displays a list of ingredients and provides
+ * functionality to adjust the serving size. It calculates and displays the
+ * quantity of each ingredient based on the number of servings.
+ *
+ * @component
+ *
+ * @param {object} props - The component's properties.
+ * @param {array} props.ingredients - An array of ingredients to be displayed.
+ *
+ * @returns {JSX.Element} - A React component that renders the ingredients list.
+*/
+
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { changeIngredientQuantity } from '../helper/recipeDetailsHelper';
@@ -28,11 +43,10 @@ const Ingredients = ({ ingredients }) => {
         </div>
       </div>
       <ul className="list-disc ">
-        {ingredients.map((ingredient) => (<li key={ingredient.name} className='flex flex-row flex-no-wrap justify-between items-start rounded-lg bg-white shadow-[rgba(0,0,0,0.25)_0px_0px_5px_0px] p-1.5 mb-2 gap-12'>
-          <div className="text-black text-sm font-normal font-['Helvetica'] leading-tight tracking-tight">
-            {changeIngredientQuantity(numberOfPeopleToServing, ingredient.name)}
-          </div>
-          <p className="whitespace-nowrap text-right text-black text-sm font-normal font-['Helvetica'] leading-tight tracking-tight">{`${ingredient.calories * numberOfPeopleToServing} calories`}</p>
+        {ingredients.map((ingredient) => (<li key={ingredient} className='flex flex-row flex-no-wrap justify-between items-start rounded-lg bg-white shadow-[rgba(0,0,0,0.25)_0px_0px_5px_0px] p-1.5 mb-2 gap-12'>
+          <div className="text-black text-sm font-normal font-['Helvetica']  tracking-tight">
+            {changeIngredientQuantity(numberOfPeopleToServing, ingredient)}
+          </div>  
         </li>
         ))}
       </ul>
@@ -45,3 +59,6 @@ Ingredients.propTypes = {
 }
 
 export default Ingredients;
+
+//If we get calories Information for each ingredient use this:
+//<p className="whitespace-nowrap text-right text-black text-sm font-normal font-/['Helvetica'] leading-tight tracking-tight">{`${ingredient.calories * numberOfPeopleToServing} calories`}</p> 
