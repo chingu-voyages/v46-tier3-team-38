@@ -12,7 +12,7 @@ export default function SearchResult(){
     useEffect(()=>{
         setIsLoading(true);
         getRecipes(term); 
-    }, [])
+    }, [term])
 
     async function getRecipes(term){
         console.log(`is this running?`)
