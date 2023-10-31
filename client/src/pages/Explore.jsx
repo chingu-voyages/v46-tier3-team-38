@@ -4,73 +4,6 @@ import RecipeList from "../components/explore/RecipeList";
 import { useNavigate } from "react-router-dom";
 import BackendAPI from "../helper/BackendApi";
 
-const recipeData =[
-    {   recipe:{
-            images:{
-            REGULAR:{
-                    url:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-            },
-            label: "Avocado salad with tomatoes",
-            mealType: "Breakfast"
-        }
-    },
-    {   recipe:{
-            images:{
-            REGULAR:{
-                    url:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-            },
-            label: "Avocado salad with tomatoes",
-            mealType: "Breakfast"
-        }
-    },  
-    {   recipe:{
-            images:{
-            REGULAR:{
-                    url:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-            },
-            label: "Avocado salad with tomatoes",
-            mealType: "Breakfast"
-        }
-    },
-    {   recipe:{
-            images:{
-            REGULAR:{
-                    url:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-            },
-            label: "Avocado salad with tomatoes",
-            mealType: "Breakfast"
-        }
-    },
-    {   recipe:{
-            images:{
-            REGULAR:{
-                    url:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-            },
-            label: "Avocado salad with tomatoes",
-            mealType: "Breakfast"
-        }
-    },  
-    {   recipe:{
-            images:{
-            REGULAR:{
-                    url:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=2080&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                }
-            },
-            label: "Avocado salad with tomatoes",
-            mealType: "Breakfast"
-        }
-    },
-
-    
-];
-
-
-
 export default function Explore(){
     const navigate = useNavigate();
     const [randomRecipe, setRandomRecipe] = useState("");
@@ -109,7 +42,7 @@ export default function Explore(){
     }
     
     return(
-        <main className="m-5">
+        <main className="sm:mb-5">
         <div>
             <section>
                 <h1 className="mb-3 text-3xl text-left">Explore</h1>
