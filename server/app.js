@@ -3,7 +3,9 @@ const cors = require('cors');
 const axios = require('axios');
 const { getSpecificRecipeInfo } = require('./getSpecificRecipeInfo');
 const { searchRecipe } = require('./searchRecipe');
-
+const signUpRoute=require('./database/SignUp/route');
+const loginRoute=require('./database/Login/route');
+const forgetPasswordRoute=require('./database/ForgetPassword/route');
 const app = express();
 const port = 3000;
 
@@ -28,7 +30,9 @@ const port = 3000;
 // app.use(cors(corsOptions));
 app.use(cors());
 app.use(express.json());
-
+app.use('/',loginRoute);
+app.use('/',signUpRoute);
+app.use('/',forgetPasswordRoute);
 
 app.get('/search', async (req, res)=>{
     let params = req.query;
