@@ -3,13 +3,18 @@
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
-const path = require("path");
-require("dotenv").config();
-const { DATABASE_URL } = process.env;
-module.exports = {
+import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+dotenv.config();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const { DATABASE_URL = "postgres://pivhhgtx:FHxpgZ4AE0CYZxpsgBgLydX2KX-D5xLv@bubble.db.elephantsql.com/pivhhgtx" } = process.env;
+export default {
 
   development: {
-    client: 'sqlite3',
+    client: 'postgresql',
     connection: DATABASE_URL,
     migrations: {
             directory: path.join(__dirname, "src", "db", "migrations"),

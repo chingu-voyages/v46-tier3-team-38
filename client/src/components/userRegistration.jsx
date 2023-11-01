@@ -62,6 +62,7 @@ let navigateTo = useNavigate();
     try {
       //clear state and controlled inputs
       //need value attrib on inputs for this
+      setSuccess(true);
       registerUser();
       setUsername("");
       setPwd("");
