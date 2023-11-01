@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import {
@@ -14,6 +14,7 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,12}$/;
 
 function userRegistration() {
+let navigateTo = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
 
@@ -80,12 +81,7 @@ function userRegistration() {
   return (
     <>
       {success ? (
-        <section>
-          <h1>Success!</h1>
-          <p>
-            <a href="/dashboard">Click to view Dashboard</a>
-          </p>
-        </section>
+        navigateTo("/dashboard")
       ) : (
         <main>
           <section>
