@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
-import axios from "axios";
 import {
   faCheck,
   faTimes,
@@ -8,12 +7,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import recigo1 from "../../src/recigo1.png";
+import backendAPI from "../helper/BackendApi";
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL + "/registration";
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,12}$/;
 
-function userRegistration() {
+function UserRegistration() {
   const userRef = useRef();
   const errRef = useRef();
 
@@ -55,13 +54,13 @@ function userRegistration() {
     const v1 = USER_REGEX.test(username);
     const v2 = PWD_REGEX.test(pwd);
     if (!v1 || !v2) {
-        setErrMsg("Invalid Entry");
-        return;
+      setErrMsg("Invalid Entry");
+      return;
     }
     try {
-      setSuccess(true);
       //clear state and controlled inputs
       //need value attrib on inputs for this
+      registerUser();
       setUsername("");
       setPwd("");
       setMatchPwd("");
@@ -76,6 +75,17 @@ function userRegistration() {
       errRef.current.focus();
     }
   };
+
+  const registerUser = async () => {
+    console.log('Register User');
+    try {
+      const response = await backendAPI.signUp(username, pwd);
+      setSuccess(response);
+    } catch (e) {
+      console.log('something went wrong while registering user', e);
+      setErrMsg(e);
+    }
+  }
 
   return (
     <>
@@ -110,7 +120,17 @@ function userRegistration() {
                   <h1 className="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     Create an account
                   </h1>
-                  <p
+                  {
+                    errMsg &&
+                    <div
+                      ref={errRef}
+                      aria-live="assertive"
+                      role="alert"
+                      className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" >
+                      {errMsg}
+                    </div>
+                  }
+                  {/* <p
                     ref={errRef}
                     className={
                       errMsg ? "errmsg" && "text-red-500" : "offscreen"
@@ -118,7 +138,7 @@ function userRegistration() {
                     aria-live="assertive"
                   >
                     {errMsg}
-                  </p>
+                  </p> */}
                   <form
                     className="space-y-4 md:space-y-6"
                     onSubmit={handleSubmit}
@@ -154,22 +174,22 @@ function userRegistration() {
                         value={username}
                         aria-invalid={validName ? "false" : "true"}
                         aria-describedby="uidnote"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder=""
-                        required=""
+                        placeholder="kanchan"
+                        required
                         onFocus={() => setUserFocus(true)}
-                            onBlur={() => setUserFocus(false)}
+                        onBlur={() => setUserFocus(false)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       />
                       <p
                         id="uidnote"
                         className={
-                          userFocus && !username || !validName
-                            ? "visible p-2 text-sm font-light text-gray-500 dark:text-gray-400"
+                          userFocus && (!username || !validName)
+                            ? "py-2 text-sm text-gray-800 dark:text-gray-300"
                             : "hidden"
                         }
                       >
                         <FontAwesomeIcon icon={faInfoCircle} />
-                        Must be 4 to 24 characters.
+                        &nbsp; Must be 4 to 24 characters.
                         <br />
                         Must begin with a letter.
                         <br />
@@ -216,12 +236,12 @@ function userRegistration() {
                       id="pwdnote"
                       className={
                         pwdFocus && !validPwd
-                          ? "visible text-sm font-light text-gray-500 dark:text-gray-400"
+                          ? "text-sm text-gray-800 dark:text-gray-300"
                           : "hidden"
                       }
                     >
                       <FontAwesomeIcon icon={faInfoCircle} />
-                      6 to 12 characters.
+                      &nbsp; 6 to 12 characters.
                       <br />
                       Must include uppercase and lowercase letters, a number and
                       a special character.
@@ -311,4 +331,4 @@ function userRegistration() {
   );
 }
 
-export default userRegistration;
+export default UserRegistration;
