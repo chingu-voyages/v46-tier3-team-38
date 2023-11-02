@@ -4,7 +4,7 @@ import Login from "./pages/Login";
 import Explore from "./pages/Explore";
 import SearchResult from "./pages/SearchResult";
 import SignUp from "./pages/SignUp";
-import ForgetPassword from "./components/forgetPassword";
+import ForgetPassword from "./pages/ForgetPassword";
 import DashboardPage from "./pages/DashboardPage";
 
 function App() {

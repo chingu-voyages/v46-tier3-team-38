@@ -13,8 +13,7 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,12}$/;
 
 function UserRegistration() {
-
-let navigateTo = useNavigate();
+  const navigate = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
 
@@ -31,7 +30,7 @@ let navigateTo = useNavigate();
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [errMsg, setErrMsg] = useState("");
-  const [success, setSuccess] = useState(false);
+  // const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     userRef.current.focus();
@@ -62,12 +61,12 @@ let navigateTo = useNavigate();
     try {
       //clear state and controlled inputs
       //need value attrib on inputs for this
-      setSuccess(true);
-      registerUser();
+      await registerUser();
       setUsername("");
       setPwd("");
-      setMatchPwd("");
+      setErrMsg("");
     } catch (err) {
+      console.log('something went wrong while registering user', err);
       if (!err?.response) {
         setErrMsg("No Server Response");
       } else if (err.response?.status === 409) {
@@ -75,26 +74,29 @@ let navigateTo = useNavigate();
       } else {
         setErrMsg("Registration Failed");
       }
-      errRef.current.focus();
+      // errRef.current.focus(); //this line throwing error
     }
   };
 
   const registerUser = async () => {
     console.log('Register User');
-    try {
-      const response = await backendAPI.signUp(username, pwd);
-      setSuccess(response);
-    } catch (e) {
-      console.log('something went wrong while registering user', e);
-      setErrMsg(e);
+    const response = await backendAPI.signUp(username, pwd);
+    if(response){
+      navigate("/dashboard");
     }
+    // try {
+    //   const response = await backendAPI.signUp(username, pwd);
+    //   setSuccess(response.data);
+    // } catch (e) {
+    //   setSuccess(false);
+    //   throw e;
+    // }
   }
 
   return (
-    <>
-      {success ? (
-        navigateTo("/dashboard")
-      ) : (
+    // success ? (
+    //     navigate("/dashboard")
+    //   ) : (
         <main>
           <section>
             <div className="flex flex-col justify-center items-center bg-yellow-50">
@@ -119,7 +121,7 @@ let navigateTo = useNavigate();
                     Create an account
                   </h1>
                   {
-                    errMsg &&
+                    errMsg.length>0 &&
                     <div
                       ref={errRef}
                       aria-live="assertive"
@@ -324,9 +326,8 @@ let navigateTo = useNavigate();
             </div>
           </section>
         </main>
-      )}
-    </>
-  );
+      )
+  // );
 }
 
 export default UserRegistration;
