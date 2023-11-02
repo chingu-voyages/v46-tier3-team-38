@@ -4,6 +4,8 @@ import UserLoginPage from "./pages/UserLoginPage";
 import Explore from "./pages/Explore";
 import SearchResult from "./pages/SearchResult";
 import Navbar from "./components/Navbar";
+import ViewRecipeDetails from "./pages/viewRecipeDetails";
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Route path="/" element={<UserLoginPage />} />
         <Route path="/explore" element={<Explore />} />
         <Route path="/result/:term" element={<SearchResult />} />
+        <Route path="/viewRecipeDetails/:recipeID" element={<ViewRecipeDetails />} />
       </Routes>
     </Router>
 
