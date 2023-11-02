@@ -12,7 +12,7 @@ import RecipeImageAndTitle from "../components/recipeImageAndTitle";
 import Tags from "../components/tags";
 import Ingredients from "../components/ingredients";
 import Instructions from "../components/instructions";
-import { getRecipeDetail } from "../helper/recipeDetailsHelper";
+import BackendAPI from "../helper/BackendApi";
 
 const ViewRecipeDetails = () => {
   const { recipeID } = useParams();
@@ -21,7 +21,7 @@ const ViewRecipeDetails = () => {
 
   useEffect(() => {
     async function getRecipeInfo() {
-      const recipe = await getRecipeDetail(recipeID);
+      const recipe = await  BackendAPI.getRecipeDetail(recipeID);
       setRecipeDetail(recipe);
       setIsLoading(false);
     }
