@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSearch } from "react-icons/fa";
 import RecipeList from "../components/explore/RecipeList";
 import { useNavigate } from "react-router-dom";
+import BackendAPI from "../helper/BackendApi";
 
 const recipeData =[
     {   recipe:{
@@ -72,8 +73,22 @@ const recipeData =[
 
 export default function Explore(){
     const navigate = useNavigate();
+    const [randomRecipe, setRandomRecipe] = useState("");
     const [searchTerm, setSearchTerm] = useState("");
     const [error, setError] = useState("");
+
+    useEffect(() => {
+        console.log(`useEffect ran`)
+        async function getRecipe(){
+            try{
+                let response = await BackendAPI.getRandomRecipe();
+                setRandomRecipe(response);
+            } catch (e){
+                console.log("error", e);
+            }
+        }
+        getRecipe();
+    },[])
 
     function handleSubmit(e){
         e.preventDefault();
@@ -87,6 +102,10 @@ export default function Explore(){
     function handleChange(e){
         setSearchTerm(e.target.value);
         setError("");
+    }
+
+    if(!randomRecipe){
+        return <h1>Loading...</h1>
     }
     
     return(
@@ -109,7 +128,7 @@ export default function Explore(){
             </section>
         </div>
         <h2 className="font-bold text-xl mt-5">Popular dishes</h2>
-        <RecipeList recipes={recipeData} />
+        <RecipeList recipes={randomRecipe} />
         <button 
             type="submit" 
             form="search" 
