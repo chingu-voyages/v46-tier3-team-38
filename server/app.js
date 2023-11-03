@@ -11,7 +11,7 @@ const { searchRecipe, getRandomRecipe } = require('./searchRecipe');
 const app = express();
 const port = 3000;
 
-const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173'];
+const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', 'https://recipo-frontend.onrender.com'];
 
 const corsOptions = {
     origin: function (origin, callback) {
