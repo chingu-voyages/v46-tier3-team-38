@@ -1,9 +1,12 @@
 import axios from 'axios';
+import dotenv from 'dotenv'; 
+dotenv.config()
 
 const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 
 class BackendAPI{
     static async searchRecipe(term){
+        console.log(process.env.BASE_URL)
         let response = await axios.get(`${BASE_URL}/search/?q=${term}`);
         return response.data
     }
