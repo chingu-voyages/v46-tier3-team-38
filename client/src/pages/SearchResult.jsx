@@ -1,16 +1,18 @@
+/**
+ 
+ * SearchResult Component
+ *
+ * The SearchResult function is a component that displays a list of recipes based on a search term. The function also calls the searchRecipe method from the BackendAPI class to fetch the recipes based on the search term. If there are no recipes found, it displays a message indicating that there are no matching recipes.
+ * 
+ * @component
+ */
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RecipeList from "../components/explore/RecipeList";
 import BackendAPI from "../helper/BackendApi";
 import Loader from "../components/Loader";
 
-/**
- 
- * SearchResult Component page
- *
- * SearchResult component shows list of recipes using RecipeCard component as a page
- *@component
- */
 
 export default function SearchResult(){
     const { term } = useParams();
