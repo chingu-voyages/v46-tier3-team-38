@@ -1,5 +1,3 @@
-import RecipeCard from "./RecipeCard";
-
 /**
  * RecipeList Component
  *
@@ -13,12 +11,19 @@ import RecipeCard from "./RecipeCard";
  * @returns {JSX.Element} - A React component that renders list of recipeCards.
 */
 
-export default function RecipeList({recipes}){
-    return(
-        <section className="mt-5 mx-auto">
+import RecipeCard from "./RecipeCard";
+import PropTypes from 'prop-types';
+
+RecipeList.propTypes = {
+    recipes: PropTypes.array,
+}
+
+export default function RecipeList({ recipes }) {
+    return (
+        <section className="mt-5 mb-12 mx-auto">
             <div className="grid grid-cols-3 justify-items-center">
-                     {recipes.map((r,idx) =>(
-                    <RecipeCard key={idx} recipeData={r.recipe} />
+                {recipes.map((r, index) => (
+                    <RecipeCard key={index} recipe={r.recipe} />
                 ))}
             </div>
         </section>

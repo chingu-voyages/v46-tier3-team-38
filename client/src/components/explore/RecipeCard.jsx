@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 /**
  * RecipeCard Component
  *
@@ -9,20 +7,33 @@ import { Link } from "react-router-dom";
  * @component
  * 
  * @param {object} props - The component's properties.
- * @param {array} props.recipeData - array of data about 1 recipe.
+ * @param {object} props.recipe - Recipe Info.
  * @returns {JSX.Element} - A React component that renders displays recipe image, tile and meal type. 
 */
 
-export default function RecipeCard({recipeData}){
-    console.log(recipeData);
-    return(
+import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+
+function getRecipeId(recipeUri) {
+    let cutoffIdx = recipeUri.indexOf("_");
+    const recipeId = recipeUri.slice(cutoffIdx + 1);
+    return recipeId;
+}
+
+function RecipeCard({ recipe }) {
+    const recipeImage = recipe.images && recipe.images.REGULAR.url;
+    const recipeLabel = recipe.label;
+    const mealType = recipe.mealType;
+    const recipeID = getRecipeId(recipe.uri);
+    console.log(recipe);
+    return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg m-1 sm:m-5 transform w-fit transition duration-500 hover:scale-105">
-            <Link to={`/viewRecipeDetails/${getRecipeId(recipeData.uri)}`}>
-                <img className="w-full" src={recipeData.images.REGULAR.url} alt={`picture of ${recipeData.label}.`}/>
+            <Link to={`/viewRecipeDetails/${recipeID}`}>
+                <img className="w-full" src={recipeImage} alt={`picture of ${recipeLabel}.`} />
                 <div className="px-2 sm:px-6 py-4">
-                    <h3 className="text-left font-bold text-xs sm:text-sm mb-1">{recipeData.label}</h3>
+                    <h3 className="text-left font-bold text-xs sm:text-sm mb-1">{recipeLabel}</h3>
                     <div className="flex justify-between">
-                        <p className="text-xs">{recipeData.mealType}</p>
+                        <p className="text-xs">{mealType}</p>
                     </div>
                 </div>
             </Link>
@@ -30,10 +41,17 @@ export default function RecipeCard({recipeData}){
     )
 }
 
-function getRecipeId(recipeUri){
-    let cutoffIdx=recipeUri.indexOf("_");
-    const recipeId =recipeUri.slice(cutoffIdx+1);
-    return recipeId;
-}
+RecipeCard.propTypes = {
+    recipe: PropTypes.shape({
+        images: PropTypes.shape({
+            REGULAR: PropTypes.shape({
+                url: PropTypes.string
+            })
+        }),
+        label: PropTypes.string,
+        mealType: PropTypes.string,
+        uri: PropTypes.string
+    })
+};
 
-
+export default RecipeCard;
