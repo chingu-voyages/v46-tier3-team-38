@@ -2,7 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import RecipeList from "../components/explore/RecipeList";
 import BackendAPI from "../helper/BackendApi";
+import Loader from "../components/Loader";
 
+/**
+ 
+ * SearchResult Component page
+ *
+ * SearchResult component shows list of recipes using RecipeCard component as a page
+ *@component
+ */
 
 export default function SearchResult(){
     const { term } = useParams();
@@ -26,19 +34,16 @@ export default function SearchResult(){
         getRecipes(term); 
     }, [term])
 
-
-
     if(isLoading){
-        return <h1>Loading...</h1>
+        return <Loader />
     }
-    console.log(recipes);
-    if(recipes.length===0){
-        return <h1>There is no recipe matches to Your Search Term :{term}</h1>
-    }
-    
+
     return(
-        <main className="m-5">
-        <RecipeList recipes={recipes}/>
+        <main className="m-5 text-center max-w-screen-xl mx-auto">
+            {recipes.length===0
+                ?(<h1>There is no recipe matches to Your Search Term :{term}</h1>)
+                :(<RecipeList recipes={recipes}/>)
+            }
         </main>
     );
 }
