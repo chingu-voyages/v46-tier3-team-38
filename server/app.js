@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require('cors');
-const { getSpecificRecipeInfo } = require('./getSpecificRecipeInfo');
-const { searchRecipe, getRandomRecipe } = require('./searchRecipe');
+const { getSpecificRecipeInfo } = require('./functions_api/getSpecificRecipeInfo');
+const { searchRecipe, getRandomRecipe } = require('./functions_api/searchRecipe');
 
 const app = express();
 const port = 3000;
@@ -25,7 +25,6 @@ app.use(express.json());
 
 app.get('/search', async (req, res)=>{
     const params = req.query;
-    console.log("🚀 Search params : ", params);
     try{
         const response = await searchRecipe(params);
         res.status(200).send(response.hits);
@@ -50,7 +49,7 @@ app.get('/recipeInfo/:recipeID', async (req, res) => {
         const recipeInfo = await  getSpecificRecipeInfo(recipeID);
         res.status(200).send(recipeInfo);
     } catch(e){
-        res.status(400).send(error);
+        res.status(400).send(e);
     }
 });
 
