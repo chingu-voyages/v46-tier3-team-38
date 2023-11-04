@@ -20,7 +20,6 @@ async function searchRecipe(params){
         url: BASE_URL,
         params: updatedParams,
     }
-    console.log("🚀 ~ file: searchRecipe.js:20 ~ searchRecipe ~ options:", options)
     
     try{
         const response = await axios.request(options)
@@ -42,7 +41,6 @@ async function getRandomRecipe(){
         url: BASE_URL,
         params: updatedParams,
     }
-    console.log("🚀 ~ file: searchRecipe.js:20 ~ searchRecipe ~ options:", options)
     
     try{
         const response = await axios.request(options)
@@ -51,6 +49,5 @@ async function getRandomRecipe(){
             console.log('error', e);
         }
 }
-
 
 module.exports = { searchRecipe, getRandomRecipe };

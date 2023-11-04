@@ -26,7 +26,6 @@ app.use(express.json());
 
 app.get('/search', async (req, res)=>{
     let params = req.query;
-    console.log("🚀 ~ file: app.js:28 ~ app.get ~ params:", params)
     try{
         const response = await searchRecipe(params);
         res.send(response.hits);

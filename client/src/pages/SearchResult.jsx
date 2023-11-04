@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
  * SearchResult Component page
  *
  * SearchResult component shows list of recipes using RecipeCard component as a page
- *
+ *@component
  */
 
 export default function SearchResult(){

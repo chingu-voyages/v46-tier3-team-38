@@ -6,12 +6,13 @@ import BackendAPI from "../helper/BackendApi";
 import Loader from "../components/Loader";
 
 /* Explore Component page
-*
+
 * Explore component shows 
     1. searchbox 
     2. 6 random recipes (using RecipeList component)
 * Submitting Search form will take a user to SearchResult Component page
-*/
+* @component
+ */
 
 export default function Explore(){
     const navigate = useNavigate();
@@ -71,7 +72,7 @@ export default function Explore(){
                             type="submit" 
                             form="search" 
                             onClick={(e)=>handleSubmit(e)}
-                            className="bg-gray-200 rounded-lg w-full sm:w-24 p-1 mt-2 sm:mt-0 sm:ml-2 hover:bg-green-600 hover:text-white"> 
+                            className="bg-gray-200 rounded-lg w-full hidden sm:inline-block sm:w-24 p-1 mt-2 sm:mt-0 sm:ml-2 hover:bg-green-600 hover:text-white"> 
                             Search 
                         </button>
                     </form>
@@ -79,6 +80,13 @@ export default function Explore(){
                 </section>
                 <h2 className="font-bold text-xl mt-5">Popular dishes</h2>
                 <RecipeList recipes={randomRecipe} />
+                <button 
+                    type="submit" 
+                    form="search" 
+                    onClick={(e)=>handleSubmit(e)}
+                    className="bg-gray-200 rounded-lg w-full sm:hidden p-1 mt-2 hover:bg-green-600 hover:text-white mb-12"> 
+                    Search 
+                </button>
             </div>
         </main>
     );
