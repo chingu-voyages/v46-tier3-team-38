@@ -8,7 +8,6 @@ const BASE_URL = ENVIRONMENT ==='development' ? "http://localhost:3000": import.
 
 class BackendAPI{
     static async searchRecipe(term){
-        console.log(process.env.BASE_URL)
         let response = await axios.get(`${BASE_URL}/search/?q=${term}`);
         return response.data
     }

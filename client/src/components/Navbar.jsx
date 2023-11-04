@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { RiHomeLine } from "react-icons/ri";
 import { FaSearch, FaRegSmile } from "react-icons/fa";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
