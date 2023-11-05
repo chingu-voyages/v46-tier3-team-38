@@ -1,8 +1,9 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { RiHomeLine } from "react-icons/ri";
 import { FaSearch, FaRegSmile } from "react-icons/fa";
 import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { BsPencil } from "react-icons/bs";
+
 /** Navbar component
     depending on the user state, shown items should
     When user is logged in:
@@ -15,91 +16,93 @@ import { BsPencil } from "react-icons/bs";
     currently manually setting currently user as null.
  */
 
-let currentUser = null;
-
-export default function Navbar(){
+export default function Navbar() {
+    const currentUser = null;
+    const location = useLocation();
+    const { pathname } = location;
+    console.log(pathname);
     return (
-        <nav className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-          {currentUser? loggedIn() : loggedOut()} 
+        <nav className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200">
+            {currentUser ? loggedIn(pathname) : loggedOut(pathname)}
         </nav>
     )
 }
 
-function loggedIn(){
+function loggedIn(pathname) {
     return (
-    <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
-            <NavLink to="/" className="flex flex-col items-center" >
-                <RiHomeLine />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
-                    Home
-                </span>
-            </NavLink>
-        </li>
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
-            <NavLink to="/explore" className="flex flex-col items-center" >
-                <FaSearch />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
-                Explore
-                </span>
-            </NavLink>
-        </li>         
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
-            <NavLink to="/" className="flex flex-col items-center" >
-                <FaRegSmile />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
-                Profile
-                </span>
-            </NavLink>
-        </li>         
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
-            <NavLink to="/" className="flex flex-col items-center" >
-                <FiLogOut />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
-                Logout
-                </span>
-            </NavLink>
-        </li>         
-    </ul>
+        <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
+            <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
+                <NavLink to="/" className="flex flex-col items-center" >
+                    <RiHomeLine className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8 p-1`} />
+                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                        Home
+                    </span>
+                </NavLink>
+            </li>
+            <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
+                <NavLink to="/explore" className="flex flex-col items-center" >
+                    <FaSearch className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''}`} />
+                    <span className={`${pathname.includes('explore') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                        Explore
+                    </span>
+                </NavLink>
+            </li>
+            <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
+                <NavLink to="/" className="flex flex-col items-center" >
+                    <FaRegSmile className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                        Profile
+                    </span>
+                </NavLink>
+            </li>
+            <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
+                <NavLink to="/" className="flex flex-col items-center" >
+                    <FiLogOut className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                        Logout
+                    </span>
+                </NavLink>
+            </li>
+        </ul>
     )
 }
 
-function loggedOut(){
-    return(
+function loggedOut(pathname) {
+    return (
         <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
-            <NavLink to="/" className="flex flex-col items-center" >
-                <RiHomeLine />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
-                    Home
-                </span>
-            </NavLink>
-        </li>
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
-            <NavLink to="/explore" className="flex flex-col items-center" >
-                <FaSearch />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
+            <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
+                <NavLink to="/" className="flex flex-col items-center" >
+                    <RiHomeLine className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                        Home
+                    </span>
+                </NavLink>
+            </li>
+            <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
+                <NavLink to="/explore" className="flex flex-col items-center" >
+                    <FaSearch className={`${pathname.includes('explore') ? 'w-8 text-teal-700 p-1 rounded-md shadow' : ''} w-5 h-8`} />
+                    <span className={`${pathname.includes('explore') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                 Explore
                 </span>
             </NavLink>
         </li>         
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
+        <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
             <NavLink to="/" className="flex flex-col items-center" >
-                <FiLogIn />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
+                <FiLogIn className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`}/>
+                <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                 Login
                 </span>
             </NavLink>
         </li>         
-        <li className="flex items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group" >
+        <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
             <NavLink to="/" className="flex flex-col items-center" >
-                <BsPencil />
-                <span className="text-sm text-gray-500 dark:text-gray-400 group-hover:text-green-600 dark:group-hover:text-blue-500">
-                Sign up
-                </span>
-            </NavLink>
-        </li>         
-    </ul>
+                <BsPencil className={`${pathname.includes('/') ? 'text-teal-700 p-1 bg-white rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                        Sign up
+                    </span>
+                </NavLink>
+            </li>
+        </ul>
     )
 }
 
