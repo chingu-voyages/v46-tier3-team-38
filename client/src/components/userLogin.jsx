@@ -1,5 +1,5 @@
 import { useState } from "react";
-import recigo1 from "../../src/recigo1.png";
+import recigo1 from "../../assets/recigo1.png";
 
 const userLogin = () => {
   return (

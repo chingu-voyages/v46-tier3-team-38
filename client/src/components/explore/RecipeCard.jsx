@@ -23,7 +23,7 @@ function getRecipeId(recipeUri) {
 function RecipeCard({ recipe }) {
     const recipeImage = recipe.images && recipe.images.REGULAR.url;
     const recipeLabel = recipe.label;
-    const mealType = recipe.mealType;
+    const mealType = recipe.mealType[0];
     const recipeID = getRecipeId(recipe.uri);
     console.log(recipe);
     return (
@@ -49,7 +49,7 @@ RecipeCard.propTypes = {
             })
         }),
         label: PropTypes.string,
-        mealType: PropTypes.string,
+        mealType: PropTypes.array,
         uri: PropTypes.string
     })
 };
