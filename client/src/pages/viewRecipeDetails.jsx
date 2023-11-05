@@ -8,10 +8,10 @@
 
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
-import RecipeImageAndTitle from "../components/recipeImageAndTitle";
-import Tags from "../components/tags";
-import Ingredients from "../components/ingredients";
-import Instructions from "../components/instructions";
+import RecipeImageAndTitle from "../components/viewRecipeDetails/recipeImageAndTitle";
+import Tags from "../components/viewRecipeDetails/tags";
+import Ingredients from "../components/viewRecipeDetails/ingredients";
+import Instructions from "../components/viewRecipeDetails/instructions";
 import BackendAPI from "../helper/BackendApi";
 import Loader from "../components/Loader";
 
