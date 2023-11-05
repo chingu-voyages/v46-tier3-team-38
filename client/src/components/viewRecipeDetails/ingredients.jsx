@@ -15,7 +15,7 @@
 
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-import { changeIngredientQuantity } from '../helper/recipeDetailsHelper';
+import { changeIngredientQuantity } from '../../helper/recipeDetailsHelper';
 
 const Ingredients = ({ ingredients }) => {
   const [numberOfPeopleToServing, setNumberOfPeopleToServing] = useState(1);
