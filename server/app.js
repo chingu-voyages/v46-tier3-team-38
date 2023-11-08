@@ -1,12 +1,14 @@
 const express = require("express");
 const cors = require('cors');
+const { getSpecificRecipeInfo } = require('./functions_api/getSpecificRecipeInfo');
+const { searchRecipe, getRandomRecipe } = require('./functions_api/searchRecipe');
 const axios = require('axios');
 const { getSpecificRecipeInfo } = require('./getSpecificRecipeInfo');
 
 const signUpRoute=require('./database/SignUp/route');
 const loginRoute=require('./database/Login/route');
 const forgetPasswordRoute=require('./database/ForgetPassword/route');
-const { searchRecipe, getRandomRecipe } = require('./searchRecipe');
+
 
 const app = express();
 const port = 3000;
@@ -31,11 +33,10 @@ app.use('/',signUpRoute);
 app.use('/',forgetPasswordRoute);
 
 app.get('/search', async (req, res)=>{
-    let params = req.query;
-    console.log("🚀 ~ file: app.js:28 ~ app.get ~ params:", params)
+    const params = req.query;
     try{
         const response = await searchRecipe(params);
-        res.send(response.hits);
+        res.status(200).send(response.hits);
     } catch(e){
         console.log('error', e);
     }
@@ -45,20 +46,20 @@ app.get('/random', async (req, res)=>{
     try{
         const response = await getRandomRecipe();
         data = response.hits.slice(0,6);
-        res.send(data);
+        res.status(200).send(data);
     } catch(e){
         console.log('error', e);
     }
 });
 
 app.get('/recipeInfo/:recipeID', async (req, res) => {
-
-    getSpecificRecipeInfo(req.params.recipeID).then((recipeInfo) => {
+    try{ 
+        const recipeID=req.params.recipeID;
+        const recipeInfo = await  getSpecificRecipeInfo(recipeID);
         res.status(200).send(recipeInfo);
-    }).catch((error) => {
-        res.status(400).send(error);
-    })
-
+    } catch(e){
+        res.status(400).send(e);
+    }
 });
 
 app.listen(port, () => {
