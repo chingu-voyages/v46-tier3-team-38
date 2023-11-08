@@ -27,8 +27,8 @@ function RecipeCard({ recipe }) {
     const recipeID = getRecipeId(recipe.uri);
     console.log(recipe);
     return (
-        <div className="max-w-sm rounded overflow-hidden shadow-lg m-1 sm:m-5 transform w-fit transition duration-500 hover:scale-105">
-            <Link to={`/viewRecipeDetails/${recipeID}`}>
+        <div className="max-w-[300px] rounded overflow-hidden shadow-lg m-1 sm:m-5 transform w-fit transition duration-500 hover:scale-105">
+            {/* <Link to={`/viewRecipeDetails/${recipeID}`}> */}
                 <img className="w-full" src={recipeImage} alt={`picture of ${recipeLabel}.`} />
                 <div className="px-2 sm:px-6 py-4">
                     <h3 className="text-left font-bold text-xs sm:text-sm mb-1">{recipeLabel}</h3>
@@ -36,7 +36,7 @@ function RecipeCard({ recipe }) {
                         <p className="text-xs">{mealType}</p>
                     </div>
                 </div>
-            </Link>
+            {/* </Link> */}
         </div>
     )
 }
