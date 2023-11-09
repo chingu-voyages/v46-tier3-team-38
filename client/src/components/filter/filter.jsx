@@ -6,7 +6,7 @@ function Filter({ searchFilter, setSearchFilter,handleBackClick }) {
     const dishTypes = ['Biscuits and cookies', 'Bread', 'Cereals', 'Condiments and sauces', 'Desserts', 'Drinks', 'Main course', 'Pancake', 'Preps', 'Preserve', 'Salad', 'Sandwiches', 'Side dish', 'Soup', 'Starter', 'Sweets']
     const mealTypes = ['Breakfast', 'Dinner', 'Lunch', 'Snack', 'Teatime'];
     const dietTypes = ['Balanced', 'High Fiber', 'High Protein', 'Low Carb', 'Low fat', 'Low Sodium'];
-    const healthLabels = ["Alcohol Cocktail", "Alcohol Free", "Celery Free", "Crustacean Free", "Dairy Free", "Egg Free", "Fish Free", "Fodmap Free", "Gluten Free", "Immuno Supportive", "Keto Friendly", "Kidney Friendly", "Low Fat Abs", "Low Potassium", "Low Sugar", "Lupine Free", "Mollusk Free", "Mustard Free", "No Oil Added", "Peanut Free", "Pescatarian", "Pork Free", "Red Meat Free", "Sesame Free", "Shellfish Free", "Soy Free", "Sugar Conscious", "Sulfite Free", "Tree Nut Free", "Vegan", "Vegetarian", "Wheat Free"]
+    const healthLabels = ["Alcohol Cocktail", "Alcohol Free", "Celery Free", "Crustacean Free", "Dairy Free", "Egg Free", "Fish Free", "Fodmap Free", "Gluten Free", "Immuno Supportive", "Keto Friendly", "Kidney Friendly", "Low Potassium", "Low Sugar", "Lupine Free", "Mollusk Free", "Mustard Free", "No Oil Added", "Peanut Free", "Pescatarian", "Pork Free", "Red Meat Free", "Sesame Free", "Shellfish Free", "Soy Free", "Sugar Conscious", "Sulfite Free", "Tree Nut Free", "Vegan", "Vegetarian", "Wheat Free"]
 
 
     const handleClearClick = () => {

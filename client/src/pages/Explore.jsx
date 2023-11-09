@@ -46,7 +46,7 @@ export default function Explore() {
         if (!searchTerm) {
             setError("You cannot search an empty word.");
         } else {
-            navigate(`/result/${searchTerm}`);
+            navigate(`/result/${searchTerm}`, {state:searchFilter});
         }
     }
 
