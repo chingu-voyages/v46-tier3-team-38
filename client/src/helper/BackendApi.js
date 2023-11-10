@@ -42,6 +42,32 @@ class BackendAPI{
         // console.log(recipe);
         return recipe;
     }
+
+    static async addRemoveFromFavourites(isAdd,username,recipeID){
+        const data={
+            isAdd:isAdd,
+            username:username,
+            recipeID:recipeID
+        }
+        await axios.post(`${BASE_URL}/favourites`,data)
+    }
+
+    static async addRemoveFromBookmarks(isAdd,username,recipeID){
+        const data={
+            isAdd:isAdd,
+            username:username,
+            recipeID:recipeID
+        }
+        await axios.post(`${BASE_URL}/bookmarks`,data)
+    }
+
+    static async getAllBookmarksAndFavourites(username){
+        const data={
+            username:username,
+        }
+        const response= await axios.post(`${BASE_URL}/allBookmarksAndFavourites`,data);
+        return response.data;
+    }
 }
 
 
