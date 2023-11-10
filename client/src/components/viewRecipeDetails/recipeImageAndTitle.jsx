@@ -37,7 +37,15 @@ const RecipeImageAndTitle = ({ recipeImage, recipeTitle, recipeID }) => {
         if (username != null) {
             try{
                 await BackendAPI.addRemoveFromBookmarks(!bookmarkRecipe, username, recipeID);
-                setBookmarkRecipesOfUser(recipeID);
+                if (bookmarkRecipe && bookmarkRecipesOfUser.includes(recipeID) === false) {
+                    const updateFavouriteRecipesOfUser = bookmarkRecipesOfUser.push(recipeID);
+                    setBookmarkRecipesOfUser(updateFavouriteRecipesOfUser);
+                }
+
+                if (!bookmarkRecipe && bookmarkRecipesOfUser.includes(recipeID) === true) {
+                    const updateFavouriteRecipesOfUser = bookmarkRecipesOfUser.filter(id => id !== recipeID);
+                    setBookmarkRecipesOfUser(updateFavouriteRecipesOfUser);
+                }
             }catch(error){
                 if(bookmarkRecipe){
                     setError("Error in removing bookmark recipe");

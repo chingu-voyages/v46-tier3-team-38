@@ -21,7 +21,7 @@ import BackendAPI from '../../helper/BackendApi';
 import Error from '../error';
 
 const Tags = ({ healthLabels, cautions, recipeID }) => {
-    const { username, favouriteRecipesOfUser,setFavouriteRecipesOfUser } = useAuth();
+    const { username, favouriteRecipesOfUser, setFavouriteRecipesOfUser } = useAuth();
     const isRecipeFavourites = favouriteRecipesOfUser.includes(recipeID);
     const [saveToFavourites, setsaveToFavourites] = useState(isRecipeFavourites || false);
     const [error, setError] = useState(null);
@@ -30,11 +30,20 @@ const Tags = ({ healthLabels, cautions, recipeID }) => {
         if (username != null) {
             try {
                 await BackendAPI.addRemoveFromFavourites(!saveToFavourites, username, recipeID);
-                setFavouriteRecipesOfUser(recipeID);
+                if (saveToFavourites && favouriteRecipesOfUser.includes(recipeID) === false) {
+                    const updateFavouriteRecipesOfUser = favouriteRecipesOfUser.push(recipeID);
+                    setFavouriteRecipesOfUser(updateFavouriteRecipesOfUser);
+                }
+
+                if (!saveToFavourites && favouriteRecipesOfUser.includes(recipeID) === true) {
+                    const updateFavouriteRecipesOfUser = favouriteRecipesOfUser.filter(id => id !== recipeID);
+                    setFavouriteRecipesOfUser(updateFavouriteRecipesOfUser);
+                }
+
             } catch (error) {
-                if(saveToFavourites){
+                if (saveToFavourites) {
                     setError("Error in removing favourite recipe");
-                }else{
+                } else {
                     setError("Error in saving favourite recipe");
                 }
             }
