@@ -1,28 +1,43 @@
-# voyage-tasks
+# Recigo 🍳
+Live demo: [Recigo](https://recipo-frontend.onrender.com)
+![image]()
+ **Recigo** is your ultimate culinary companion for finding delicious recipes tailored to your preferences. With a wide range of filters, including meal type, health restrictions, diet options, and dish types, **Recigo** makes it effortless to discover the perfect recipe for any occasion."
 
-Your project's `readme` is as important to success as your code. For 
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
+# Features
+- Responsive website
+- User Login/Signup
+- Various filters for searching recipes 
 
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point - 
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
+# Built with
+- Database: ElephantSQL
+- Backend: Node.js, Express.js, pg(node-postgres)
+- frontend: Vite, React, Tailwind
+- API : [EDAMAM Recipe API](https://developer.edamam.com/edamam-recipe-api).
 
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
+# Contributors
+- Developers: [MS07062000](https://github.com/MS07062000), [Tomomi-K1](https://github.com/Tomomi-K1), [mhatrekanchan01](https://github.com/mhatrekanchan01), [limyod](https://github.com/limyod)
+- UX/UI designer: Yeji
 
-> Own it & Make it your Own!
+# Setup
+#### Starting backend
+1. Navigate to server folder
+   ```bash
+   $cd server
+   ```
+2.  Start backend server.
+    ```bash
+    $nodemon app.js
+    ```
+3. server will start up on `[localhost:3000](http://localhost:3000)`
 
-## Team Documents
+#### Starting frontend
+1. Navigate to frontend folder
+   ```bash
+   $cd client
+   ```
+2. Run vite with below command and open [http://localhost:5173/](http://localhost:5173/) to view it in your browser.
+   ```bash
+   $npm run dev
+   ```
 
-You may find these helpful as you work together to organize your project.
 
-- [Team Project Ideas](./docs/team_project_ideas.md)
-- [Team Decision Log](./docs/team_decision_log.md)
-
-Meeting Agenda templates (located in the `/docs` directory in this repo):
-
-- Meeting - Voyage Kickoff --> ./docs/meeting-voyage_kickoff.docx
-- Meeting - App Vision & Feature Planning --> ./docs/meeting-vision_and_feature_planning.docx
-- Meeting - Sprint Retrospective, Review, and Planning --> ./docs/meeting-sprint_retrospective_review_and_planning.docx
-- Meeting - Sprint Open Topic Session --> ./docs/meeting-sprint_open_topic_session.docx

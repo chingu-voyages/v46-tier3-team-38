@@ -5,15 +5,16 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import recigo1 from "../../src/recigo1.png";
+import recigo1 from "../../assets/recigo1.png";
 import backendAPI from "../helper/BackendApi";
 import { useAuth } from "../context/AuthContext";
+import Error from "./error";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,12}$/;
 
 const UserLogin = () => {
-  const { isUserLoggedIn }=useAuth();
+  const { isUserLoggedIn } = useAuth();
   const userRef = useRef();
   const errRef = useRef();
   const navigate = useNavigate();
@@ -77,7 +78,7 @@ const UserLogin = () => {
     console.log('Login User');
     const response = await backendAPI.login(username, pwd);
     if (response) {
-      localStorage.setItem("token",response);
+      localStorage.setItem("token", response);
       isUserLoggedIn();
       navigate("/explore");
     }
@@ -89,6 +90,7 @@ const UserLogin = () => {
     //   throw e;
     // }
   }
+
 
   return (
     <main>
@@ -116,14 +118,7 @@ const UserLogin = () => {
               </h1>
               {
                 errMsg.length > 0 &&
-                <div
-                  ref={errRef}
-                  role="alert"
-                  aria-live="assertive"
-                  className="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50"
-                >
-                  {errMsg}
-                </div>
+                <Error ref={errRef} error={errMsg} />
               }
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>

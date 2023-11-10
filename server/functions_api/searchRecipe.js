@@ -1,4 +1,5 @@
 const axios = require('axios');
+const qs = require('qs');
 require('dotenv').config();
 
 BASE_URL = 'https://api.edamam.com/api/recipes/v2';
@@ -19,12 +20,13 @@ async function searchRecipe(params) {
         method: 'GET',
         url: BASE_URL,
         params: updatedParams,
+        paramsSerializer: (params) => qs.stringify(params, {arrayFormat: 'repeat'})
     }
-
-    //console.log("🚀 Search Recipe : ", options)
+    // console.log("🚀 ~ file: searchRecipe.js:23 ~ searchRecipe ~ options:", options)
 
     try {
         const response = await axios.request(options)
+        // console.log("🚀 ~ file: searchRecipe.js:28 ~ searchRecipe ~ response:", response)
         return response.data;
     } catch (e) {
         console.log('error', e);

@@ -32,7 +32,7 @@ const RecipeImageAndTitle = ({ recipeImage, recipeTitle }) => {
     return (
         <div className="h-80 w-full relative">
             <img className="h-80 w-full" src={recipeImage} />
-            <div className="left-4 top-[80%] p-2.5 absolute text-white text-xl font-bold font-['Inter'] leading-normal tracking-wide rounded-md backdrop-blur-md">{recipeTitle}
+            <div className="left-4 bottom-4 right-4 p-2.5 absolute text-white text-xl font-bold font-['Inter'] leading-normal tracking-wide rounded-md backdrop-blur-md">{recipeTitle}
             </div>
             <div className="top-[5%] px-4 absolute w-full flex flex-row justify-between flex-nowrap items-center">
                 <button type="button" onClick={handleBackClick} className="backdrop-blur-md rounded-full">
