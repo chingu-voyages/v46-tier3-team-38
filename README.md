@@ -1,4 +1,4 @@
-#Recigo 🍳
+# Recigo 🍳
 Live demo: [Recigo](https://recipo-frontend.onrender.com)
 ![image]()
  **Recigo** is your ultimate culinary companion for finding delicious recipes tailored to your preferences. With a wide range of filters, including meal type, health restrictions, diet options, and dish types, **Recigo** makes it effortless to discover the perfect recipe for any occasion."
