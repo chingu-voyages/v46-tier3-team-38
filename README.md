@@ -15,7 +15,7 @@ Live demo: [Recigo](https://recipo-frontend.onrender.com)
 - API : [EDAMAM Recipe API](https://developer.edamam.com/edamam-recipe-api).
 
 # Contributors
-- Developers: 
+- Developers: [MS07062000](https://github.com/MS07062000), [Tomomi-K1](https://github.com/Tomomi-K1), [mhatrekanchan01](https://github.com/mhatrekanchan01), [limyod](https://github.com/limyod)
 - UX/UI designer: Yeji
 
 # Setup
