@@ -10,8 +10,7 @@ import ViewRecipeDetails from "./pages/viewRecipeDetails";
 function App() {
   return (
     <Router>
-    <Navbar />
-    
+      <Navbar />
       <Routes>
         <Route path="/" element={<UserLoginPage />} />
         <Route path="/explore" element={<Explore />} />

@@ -7,9 +7,13 @@ const BASE_URL = ENVIRONMENT ==='development' ? "http://localhost:3000": import.
 
 
 class BackendAPI{
-    static async searchRecipe(term){
+    static async searchRecipe(params){
         //console.log(BASE_URL)
-        const response = await axios.get(`${BASE_URL}/search/?q=${term}`);
+        const response = await axios.request({
+            url:`${BASE_URL}/search/`,
+            method: 'get',
+            params: {...params}
+        });
         return response.data
     }
     
