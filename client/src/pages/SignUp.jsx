@@ -1,7 +1,7 @@
-import UserRegistration from "../components/userRegistration";
+import UserRegisteration from "../components/userRegisteration";
 
 function signUp() {
-  return <UserRegistration />;
+  return <UserRegisteration />;
 }
 
 export default signUp;

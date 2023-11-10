@@ -1,7 +1,11 @@
 import UserLandingPage from "../components/userLandingPage";
-
+import AuthProvider from "../context/AuthContext";
 function DashboardPage() {
-  return <UserLandingPage />;
+  return (
+    <AuthProvider>
+      <UserLandingPage />
+    </AuthProvider>
+  );
 }
 
 export default DashboardPage;
