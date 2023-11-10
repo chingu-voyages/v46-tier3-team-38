@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { jwtVerify } from 'jose';
+import BackendAPI from '../helper/BackendApi';
 
 // Create the auth context
 const AuthContext = createContext();
@@ -10,22 +11,27 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
     const [username, setUserName] = useState(null);
+    const [bookmarkRecipesOfUser, setBookmarkRecipesOfUser] = useState([]);
+    const [favouriteRecipesOfUser, setFavouriteRecipesOfUser] = useState([]);
 
-    const isUserLoggedIn=()=>{
+    const isUserLoggedIn = async () => {
         const token = localStorage.getItem('token');
         const secret = new TextEncoder().encode(
             'WXgeD5YPIJmoCofRkc3G66kUEtuWhliJ9lqvPGNx1GTmNYgxGJ'
         );
         console.log(token);
-        if (token!=null) {
-            jwtVerify(token, secret).then((decodedtoken) => {
-                console.log(decodedtoken);
+        if (token != null) {
+            try {
+                const decodedtoken = await jwtVerify(token, secret);
                 setUserName(decodedtoken.payload.username);
+                const bookmarksAndRecipesOfUser=await BackendAPI.getAllBookmarksAndFavourites(username);
+                setBookmarkRecipesOfUser(bookmarksAndRecipesOfUser.bookmarks);
+                setFavouriteRecipesOfUser(bookmarksAndRecipesOfUser.favourites);
                 navigate('/explore');
-            }).catch((error) => {
+            } catch (error) {
                 console.error('Error decoding JWT token:', error.message);
                 navigate('/login');
-            })
+            }
         } else {
             setUserName(null);
             navigate('/login');
@@ -37,11 +43,11 @@ const AuthProvider = ({ children }) => {
     }, [])
 
 
-return (
-    <AuthContext.Provider value={{ username,isUserLoggedIn }}>
-        {children}
-    </AuthContext.Provider>
-);
+    return (
+        <AuthContext.Provider value={{ username, isUserLoggedIn, bookmarkRecipesOfUser, favouriteRecipesOfUser,setBookmarkRecipesOfUser,setFavouriteRecipesOfUser }}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 

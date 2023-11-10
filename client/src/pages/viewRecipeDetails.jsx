@@ -45,8 +45,8 @@ const ViewRecipeDetails = () => {
 
   return (
     <div className="flex flex-col gap-4 flex-nowrap bg-white max-w-lg mx-auto mb-12">
-      <RecipeImageAndTitle recipeImage={recipeImage} recipeTitle={recipeTitle} />
-      <Tags healthLabels={healthLabels} cautions={cautions} />
+      <RecipeImageAndTitle recipeImage={recipeImage} recipeTitle={recipeTitle} recipeID={recipeID}/>
+      <Tags healthLabels={healthLabels} cautions={cautions} recipeID={recipeID}/>
       <Ingredients ingredients={ingredients} />
       <Instructions instructions={instructions} />
     </div>

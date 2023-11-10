@@ -109,10 +109,14 @@ async function getAllBookmarksAndFavourites(username) {
         const result = await client.query(getAllBookmarksAndFavoritesQuery, [username]);
 
         const userData = result.rows[0];
-
-        const BookmarksAndFavourites = { 
-            bookmarks: userData.bookmarks, 
-            favourites: userData.favourites 
+        const BookmarksAndFavourites = {
+            bookmarks: [],
+            favourites: []
+        }
+        
+        if (userData) {
+            BookmarksAndFavourites.bookmarks = userData.bookmarks;
+            BookmarksAndFavourites.favourites = userData.favourites;
         }
 
         return BookmarksAndFavourites;
