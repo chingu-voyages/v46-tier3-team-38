@@ -6,7 +6,7 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import recigo1 from "../../src/recigo1.png";
+import recigo1 from "../../assets/recigo1.png";
 import backendAPI from "../helper/BackendApi";
 import { useAuth } from "../context/AuthContext";
 import Error from "./error";

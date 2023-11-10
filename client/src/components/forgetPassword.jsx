@@ -1,4 +1,4 @@
-import recigo1 from "../../src/recigo1.png";
+import recigo1 from "../../assets/recigo1.png";
 function forgetPassword() {
     return (
         <main>
