@@ -7,8 +7,8 @@ router.post('/login', async (req, res) => {
             username:req.body.username,
             password:req.body.pwd
         }
-        await checkUsernameAndPasswordMatch(userData);
-        res.status(200).send(true);
+        const token=await checkUsernameAndPasswordMatch(userData);
+        res.status(200).send(token);
     } catch (error) {
         res.status(400).send(error);
     }

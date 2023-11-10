@@ -1,23 +1,44 @@
 //define all functions for login here
 const pg = require('pg');
-const conString = "postgres://pivhhgtx:FHxpgZ4AE0CYZxpsgBgLydX2KX-D5xLv@bubble.db.elephantsql.com/pivhhgtx";
+const bcrypt = require("bcryptjs");
+const { createJWTToken } = require('../helper/createjwtToken');
+require('dotenv').config();
+
+const conString = process.env.DATABASE;
 
 async function checkUsernameAndPasswordMatch(userData) {
   const client = new pg.Client(conString);
   try {
     await client.connect();
 
-    // Query to check if a row with the given username and password exists
-    const checkQuery = 'SELECT COUNT(*) FROM users WHERE username = $1 AND password = $2';
-    const checkResult = await client.query(checkQuery, [userData.username, userData.password]);
+    // Query to retrieve user data including the password
+    const checkQuery = 'SELECT username, password FROM users WHERE username = $1';
 
-    const matchingRowCount = parseInt(checkResult.rows[0].count);
+    const checkResult = await client.query(checkQuery, [userData.username]);
+    const matchingRowCount = parseInt(checkResult.rows.length);
+    // console.log(checkResult);
+
 
     if (matchingRowCount === 1) {
-      console.log('Username and password match in one row.');
-    } else {
+      const encryptedPassword = checkResult.rows[0]['password'];
+
+      //compare encrypted password with the password user has enter
+      const passwordMatch = await bcrypt.compare(userData.password, encryptedPassword);
+
+      if (passwordMatch) {
+        console.log('Username and password match in one row.');
+
+        //create jwt token
+        return createJWTToken(userData.username);
+
+      }else{
         throw new Error('Username and password do not exists');
+      }
+
+    } else {
+      throw new Error('Username and password do not exists');
     }
+
   } catch (error) {
     console.error('Error checking username and password:', error);
     throw error;
@@ -26,4 +47,4 @@ async function checkUsernameAndPasswordMatch(userData) {
   }
 }
 
-module.exports={checkUsernameAndPasswordMatch};
+module.exports = { checkUsernameAndPasswordMatch };

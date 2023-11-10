@@ -1,6 +1,4 @@
 const { insertUserData } = require("./signUp");
-
-
 const router = require("express").Router();
 
 router.post('/signUp', async (req, res) => {
@@ -10,8 +8,8 @@ router.post('/signUp', async (req, res) => {
             username:req.body.username,
             password:req.body.pwd
         }
-        await insertUserData(userData);
-        res.status(200).send(true);
+        const token=await insertUserData(userData);
+        res.status(200).send(token);
     } catch (error) {
         console.log(error.toString());
         console.log(error.toString()==='Error: Username already exists');
