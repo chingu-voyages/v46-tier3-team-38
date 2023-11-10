@@ -24,7 +24,7 @@ export default function Navbar() {
     const { username, isUserLoggedIn } = useAuth();
     const location = useLocation();
     const { pathname } = location;
-    console.log(pathname);
+    // console.log(pathname);
     const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     return (
@@ -35,13 +35,13 @@ export default function Navbar() {
                 }
             </nav>
             {
-                showLogoutModal && logoutModal(setShowLogoutModal, isUserLoggedIn)
+                showLogoutModal && logoutModal(setShowLogoutModal, showLogoutModal, isUserLoggedIn)
             }
         </>
     )
 }
 
-function loggedIn(pathname, setShowLogoutModal) {
+function loggedIn(pathname, showLogoutModal, setShowLogoutModal) {
     const handleLogout = () => {
         console.log("handleLogout");
         setShowLogoutModal(true);
@@ -50,7 +50,7 @@ function loggedIn(pathname, setShowLogoutModal) {
         <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
             <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
                 <NavLink to="/" className="flex flex-col items-center" >
-                    <RiHomeLine className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8 p-1`} />
+                    <RiHomeLine className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8 `} />
                     <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Home
                     </span>
@@ -58,7 +58,7 @@ function loggedIn(pathname, setShowLogoutModal) {
             </li>
             <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
                 <NavLink to="/explore" className="flex flex-col items-center" >
-                    <FaSearch className={`${pathname.includes('explore') ? 'text-teal-700 p-1 rounded-md shadow' : ''}`} />
+                    <FaSearch className={`${pathname.includes('explore') ? 'w-7 text-teal-700 p-1  rounded-md shadow' : ''} w-5 h-8`} />
                     <span className={`${pathname.includes('explore') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Explore
                     </span>
@@ -66,7 +66,7 @@ function loggedIn(pathname, setShowLogoutModal) {
             </li>
             <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
                 <NavLink to="/" className="flex flex-col items-center" >
-                    <FaRegSmile className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
+                    <FaRegSmile className={`${pathname.includes('/') ? 'text-teal-700 p-1  rounded-md shadow' : ''} w-8 h-8`} />
                     <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Profile
                     </span>
@@ -74,8 +74,8 @@ function loggedIn(pathname, setShowLogoutModal) {
             </li>
             <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
                 <div className="flex flex-col items-center" >
-                    <FiLogOut onClick={handleLogout} className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
-                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                    <FiLogOut onClick={handleLogout} className={`${showLogoutModal ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${showLogoutModal ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Logout
                     </span>
                 </div>
@@ -97,7 +97,7 @@ function loggedOut(pathname) {
             </li>
             <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
                 <NavLink to="/explore" className="flex flex-col items-center" >
-                    <FaSearch className={`${pathname.includes('explore') ? 'w-8 text-teal-700 p-1 rounded-md shadow' : ''} w-5 h-8`} />
+                    <FaSearch className={`${pathname.includes('explore') ? 'w-7 text-teal-700 p-1 rounded-md shadow' : ''} w-5 h-8`} />
                     <span className={`${pathname.includes('explore') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Explore
                     </span>
