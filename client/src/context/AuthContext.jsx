@@ -30,11 +30,10 @@ const AuthProvider = ({ children }) => {
                 navigate('/explore');
             } catch (error) {
                 console.error('Error decoding JWT token:', error.message);
-                navigate('/login');
+                setUserName(null);
             }
         } else {
             setUserName(null);
-            navigate('/login');
         }
     }
 

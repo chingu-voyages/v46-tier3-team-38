@@ -31,11 +31,11 @@ export default function Navbar() {
         <>
             <nav className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200">
                 {
-                    username ? loggedIn(pathname, setShowLogoutModal) : loggedOut(pathname)
+                    username ? loggedIn(pathname, showLogoutModal, setShowLogoutModal) : loggedOut(pathname)
                 }
             </nav>
             {
-                showLogoutModal && logoutModal(setShowLogoutModal, showLogoutModal, isUserLoggedIn)
+                showLogoutModal && logoutModal(setShowLogoutModal, isUserLoggedIn)
             }
         </>
     )
@@ -46,12 +46,13 @@ function loggedIn(pathname, showLogoutModal, setShowLogoutModal) {
         console.log("handleLogout");
         setShowLogoutModal(true);
     }
+
     return (
         <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
             <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
                 <NavLink to="/" className="flex flex-col items-center" >
-                    <RiHomeLine className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8 `} />
-                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                    <RiHomeLine className={`${pathname.includes('') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8 `} />
+                    <span className={`${pathname.includes('') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Home
                     </span>
                 </NavLink>
@@ -89,15 +90,15 @@ function loggedOut(pathname) {
         <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
             <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
                 <NavLink to="/" className="flex flex-col items-center" >
-                    <RiHomeLine className={`${pathname.includes('/') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
-                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                    <RiHomeLine className={`${pathname.includes('') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${pathname.includes('') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Home
                     </span>
                 </NavLink>
             </li>
             <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
                 <NavLink to="/explore" className="flex flex-col items-center" >
-                    <FaSearch className={`${pathname.includes('explore') ? 'w-7 text-teal-700 p-1 rounded-md shadow' : ''} w-5 h-8`} />
+                    <FaSearch className={`${pathname.includes('explore') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-7 h-8`} />
                     <span className={`${pathname.includes('explore') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Explore
                     </span>
@@ -148,7 +149,7 @@ function logoutModal(setShowLogoutModal, isUserLoggedIn) {
                         <svg className="mx-auto mb-4 text-gray-400 w-12 h-12" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                         </svg>
-                        <h3 className="mb-5 text-lg font-normal text-white">Are you sure you want to logout ?</h3>
+                        <h3 className="mb-5 text-lg font-normal text-black">Are you sure you want to logout ?</h3>
                         <button onClick={handleLogout} data-modal-hide="popup-modal" type="button" className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
                             Yes, I&apos;m sure
                         </button>
