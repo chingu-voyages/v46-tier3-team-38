@@ -120,7 +120,7 @@ const UserLogin = () => {
                 errMsg.length > 0 &&
                 <Error ref={errRef} error={errMsg} />
               }
-              <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+              <form autoComplete="off" className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                 <div>
                   <label
                     htmlFor="username"

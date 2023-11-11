@@ -15,7 +15,7 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,12}$/;
 
 function UserRegisteration() {
-  const { isUserLoggedIn }=useAuth();
+  const { isUserLoggedIn } = useAuth();
   const navigate = useNavigate();
   const userRef = useRef();
   const errRef = useRef();
@@ -126,6 +126,7 @@ function UserRegisteration() {
                 <Error ref={errRef} error={errMsg} />
               }
               <form
+                autoComplete="off"
                 className="space-y-4 md:space-y-6"
                 onSubmit={handleSubmit}
               >
