@@ -30,13 +30,16 @@ export default function Explore() {
     }, [])
 
     useEffect(()=>{
-        console.log(searchFilter);
+        if(isFilter){
+            console.log(searchFilter);
+        }
     },[isFilter,searchFilter])
 
     useEffect(()=>{
         if(searchTerm.length===0){
-        setSearchOn(false);
-        }},[searchTerm]);
+            setSearchOn(false);
+        }
+    },[searchTerm]);
 
     useEffect(()=>{
         
@@ -51,8 +54,10 @@ export default function Explore() {
                 console.log('something went wrong inside useEffect', e)
             }
             setIsLoading(false);
-        }        
+        }
+
         setIsLoading(true);
+
         if(searchOn){
             getRecipes({q:searchTerm, ...searchFilter}); 
         }

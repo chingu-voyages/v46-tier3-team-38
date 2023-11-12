@@ -28,7 +28,7 @@ function RecipeCard({ recipe }) {
     // console.log(recipe);
     return (
         <div className="max-w-[300px] rounded overflow-hidden shadow-lg m-1 sm:m-5 transform w-fit transition duration-500 hover:scale-105">
-            <Link to={`/viewRecipeDetails/${recipeID}`}>
+            <Link to={`/viewRecipeDetails/${recipeID}`} state={{recipeInfo: recipe }}>
                 <img className="w-full" src={recipeImage} alt={`picture of ${recipeLabel}.`} />
                 <div className="px-2 sm:px-6 py-4">
                     <h3 className="text-left font-bold text-xs sm:text-sm mb-1">{recipeLabel}</h3>
@@ -40,6 +40,7 @@ function RecipeCard({ recipe }) {
         </div>
     )
 }
+//`/viewRecipeDetails/${recipeID}`
 
 RecipeCard.propTypes = {
     recipe: PropTypes.shape({
