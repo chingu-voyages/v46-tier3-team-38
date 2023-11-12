@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
     const isUserLoggedIn = async () => {
         const token = localStorage.getItem('token');
         const secret = new TextEncoder().encode(
-            'WXgeD5YPIJmoCofRkc3G66kUEtuWhliJ9lqvPGNx1GTmNYgxGJ'
+            import.meta.env.VITE_JWT_SECRET_KEY
         );
         console.log(token);
         if (token != null) {
