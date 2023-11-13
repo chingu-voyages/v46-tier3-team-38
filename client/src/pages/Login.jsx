@@ -1,7 +1,7 @@
 import UserLogin from "../components/userLogin";
 
-function UserLoginPage() {
+function login() {
   return <UserLogin />;
 }
 
-export default UserLoginPage;
+export default login;

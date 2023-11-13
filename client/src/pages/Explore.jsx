@@ -30,29 +30,35 @@ export default function Explore() {
     }, [])
 
     useEffect(()=>{
-        console.log(searchFilter);
+        if(isFilter){
+            console.log(searchFilter);
+        }
+        setSearchOn(false);
     },[isFilter,searchFilter])
 
     useEffect(()=>{
         if(searchTerm.length===0){
-        setSearchOn(false);
-        }},[searchTerm]);
+            setSearchOn(false);
+        }
+    },[searchTerm]);
 
     useEffect(()=>{
         
         async function getRecipes(term){
-            console.log(`is this running?`)
+            console.log(`getRecipes is this running?`)
             try{
                 const response = await BackendAPI.searchRecipe(term);
                 // console.log("🚀 ~ file: Explore.jsx:47 ~ getRecipes ~ response:", response)
                 setRecipes(response);
-                setSearchOn(false);
+                // setSearchOn(false);
             } catch(e){
                 console.log('something went wrong inside useEffect', e)
             }
             setIsLoading(false);
-        }        
+        }
+
         setIsLoading(true);
+
         if(searchOn){
             getRecipes({q:searchTerm, ...searchFilter}); 
         }
@@ -73,12 +79,14 @@ export default function Explore() {
         if (!searchTerm) {
             setError("You cannot search an empty word.");
         } else {
+            console.log(`searchOn is changed to true`);
             setSearchOn(true);
         }
     }
 
     function handleChange(e) {
         setSearchTerm(e.target.value);
+        setSearchOn(false);
         setError("");
     }
 
@@ -115,7 +123,10 @@ export default function Explore() {
                     </section>
                     {searchOn
                     ?(
-                        isLoading? (<Loader />):(<RecipeList recipes={recipes} />)
+                        isLoading? (<Loader />)
+                                 :( recipes.length ===0? (<h1 className="mt-10"> No result. Please change search criteria.</h1>)
+                                                       :(<RecipeList recipes={recipes} />)
+                                  )
                     )
                     :(
                         <div>

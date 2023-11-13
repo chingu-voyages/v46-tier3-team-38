@@ -8,6 +8,7 @@
  * @param {object} props - The component's properties.
  * @param {string} props.healthLabels - Health Labels tags of the recipe.
  * @param {string} props.cautions - Cautions tags of the recipe.
+ * @param {string} props.recipeID - recipeID of the recipe.
  *
  * @returns {JSX.Element} - A React component that renders the recipe health labels, cautions tags, and favorite buttons.
 */
@@ -15,14 +16,46 @@
 
 import PropTypes from 'prop-types';
 import { useState } from 'react';
+import { useAuth } from "../../context/AuthContext";
+import BackendAPI from '../../helper/BackendApi';
+import Error from '../error';
 
-const Tags = ({ healthLabels, cautions }) => {
-    const [saveToFavourites, setsaveToFavourites] = useState(false);
-    const handleFavouriteButtonClick = () => {
+const Tags = ({ healthLabels, cautions, recipeID }) => {
+    const { username, favouriteRecipesOfUser, setFavouriteRecipesOfUser } = useAuth();
+    const isRecipeFavourites = favouriteRecipesOfUser.includes(recipeID);
+    const [saveToFavourites, setsaveToFavourites] = useState(isRecipeFavourites || false);
+    const [error, setError] = useState(null);
+
+    const handleFavouriteButtonClick = async () => {
+        if (username != null) {
+            try {
+                await BackendAPI.addRemoveFromFavourites(!saveToFavourites, username, recipeID);
+                if (saveToFavourites && favouriteRecipesOfUser.includes(recipeID) === false) {
+                    const updateFavouriteRecipesOfUser = favouriteRecipesOfUser.push(recipeID);
+                    setFavouriteRecipesOfUser(updateFavouriteRecipesOfUser);
+                }
+
+                if (!saveToFavourites && favouriteRecipesOfUser.includes(recipeID) === true) {
+                    const updateFavouriteRecipesOfUser = favouriteRecipesOfUser.filter(id => id !== recipeID);
+                    setFavouriteRecipesOfUser(updateFavouriteRecipesOfUser);
+                }
+
+            } catch (error) {
+                if (saveToFavourites) {
+                    setError("Error in removing favourite recipe");
+                } else {
+                    setError("Error in saving favourite recipe");
+                }
+            }
+
+        }
         setsaveToFavourites(!saveToFavourites);
     }
     return (
         <>
+            {
+                error != null && <Error error={error} />
+            }
             <div className='flex flex-row flex-nowrap items-start lg:items-center justify-between gap-2 px-4'>
                 <div className='flex flex-row flex-wrap items-start gap-2'>
                     {healthLabels.map((tag, index) => (
@@ -48,12 +81,10 @@ const Tags = ({ healthLabels, cautions }) => {
     );
 }
 
-/* The code `Tags.propTypes` is defining the prop types for the `Tags` component. It specifies that the
-`healthLabels` prop should be an array and the `cautions` prop should also be an array. This is a
-way to enforce type checking and ensure that the correct types of props are passed to the component. */
 Tags.propTypes = {
     healthLabels: PropTypes.array,
-    cautions: PropTypes.array
+    cautions: PropTypes.array,
+    recipeID: PropTypes.string,
 }
 
 export default Tags;

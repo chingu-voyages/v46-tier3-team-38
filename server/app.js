@@ -1,7 +1,16 @@
 const express = require("express");
 const cors = require('cors');
+
+
 const { getSpecificRecipeInfo } = require('./functions_api/getSpecificRecipeInfo');
 const { searchRecipe, getRandomRecipe } = require('./functions_api/searchRecipe');
+
+
+const signUpRoute=require('./database/SignUp/route');
+const loginRoute=require('./database/Login/route');
+const forgetPasswordRoute=require('./database/ForgetPassword/route');
+const bookmarksAndFavouritesRoute=require('./database/BookmarksAndFavourites/route');
+
 
 const app = express();
 const port = 3000;
@@ -23,6 +32,12 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
+app.use('/',loginRoute);
+app.use('/',signUpRoute);
+app.use('/',forgetPasswordRoute);
+app.use('/',bookmarksAndFavouritesRoute);
+
+
 app.get('/search', async (req, res)=>{
     const params = req.query;
     try{
@@ -32,6 +47,7 @@ app.get('/search', async (req, res)=>{
         console.log('error', e);
     }
 });
+
 
 app.get('/random', async (req, res)=>{
     try{
@@ -43,6 +59,7 @@ app.get('/random', async (req, res)=>{
     }
 });
 
+
 app.get('/recipeInfo/:recipeID', async (req, res) => {
     try{ 
         const recipeID=req.params.recipeID;
@@ -52,6 +69,7 @@ app.get('/recipeInfo/:recipeID', async (req, res) => {
         res.status(400).send(e);
     }
 });
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
