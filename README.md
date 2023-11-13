@@ -1,7 +1,10 @@
 # Recigo 🍳
 Live demo: [Recigo](https://recipo-frontend.onrender.com)
-
-![image](./client/assets/explore.png) ![image](./client/assets/recipe-detail.png) ![image](./client/assets/signup.png)
+<div style="display: flex; justify-content: space-between;">
+  <img src="./client/assets/explore.png" width="40%" alt="Screenshot of webpage showing recipe search page.">
+  <img src="./client/assets/recipe-detail.png" width="25%" alt="Screenshot of webpage showing recipe details.">
+  <img src="./client/assets/signup.png" width="30%" alt="screenshot of login page">
+</div>
 
  **Recigo** is your ultimate culinary companion for finding delicious recipes tailored to your preferences. With a wide range of filters, including meal type, health restrictions, diet options, and dish types, **Recigo** makes it effortless to discover the perfect recipe for any occasion."
 
