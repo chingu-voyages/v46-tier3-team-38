@@ -50,14 +50,6 @@ function loggedIn(pathname, showLogoutModal, setShowLogoutModal) {
     return (
         <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
             <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
-                <NavLink to="/" className="flex flex-col items-center" >
-                    <RiHomeLine className={`${pathname.includes('') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8 `} />
-                    <span className={`${pathname.includes('') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
-                        Home
-                    </span>
-                </NavLink>
-            </li>
-            <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
                 <NavLink to="/explore" className="flex flex-col items-center" >
                     <FaSearch className={`${pathname.includes('explore') ? 'w-7 text-teal-700 p-1  rounded-md shadow' : ''} w-5 h-8`} />
                     <span className={`${pathname.includes('explore') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
@@ -89,14 +81,6 @@ function loggedOut(pathname) {
     return (
         <ul className="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
             <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
-                <NavLink to="/" className="flex flex-col items-center" >
-                    <RiHomeLine className={`${pathname.includes('') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-8 h-8`} />
-                    <span className={`${pathname.includes('') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
-                        Home
-                    </span>
-                </NavLink>
-            </li>
-            <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
                 <NavLink to="/explore" className="flex flex-col items-center" >
                     <FaSearch className={`${pathname.includes('explore') ? 'text-teal-700 p-1 rounded-md shadow' : ''} w-7 h-8`} />
                     <span className={`${pathname.includes('explore') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
@@ -113,9 +97,9 @@ function loggedOut(pathname) {
                 </NavLink>
             </li>
             <li className="flex items-center justify-center px-5 hover:bg-gray-50  group" >
-                <NavLink to="/registeration" className="flex flex-col items-center" >
-                    <BsPencil className={`${pathname.includes('registeration') ? 'text-teal-700 p-1 bg-white rounded-md shadow' : ''} w-8 h-8`} />
-                    <span className={`${pathname.includes('registeration') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                <NavLink to="/registration" className="flex flex-col items-center" >
+                    <BsPencil className={`${pathname.includes('registration') ? 'text-teal-700 p-1 bg-white rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${pathname.includes('registration') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Sign up
                     </span>
                 </NavLink>

@@ -14,7 +14,7 @@ import Error from "./error";
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{6,12}$/;
 
-function UserRegisteration() {
+function UserRegistration() { 
   const { isUserLoggedIn } = useAuth();
   const navigate = useNavigate();
   const userRef = useRef();
@@ -74,7 +74,7 @@ function UserRegisteration() {
       } else if (err.response?.status === 409) {
         setErrMsg("Username Taken");
       } else {
-        setErrMsg("Registeration Failed");
+        setErrMsg("Registration Failed");
       }
       // errRef.current.focus(); //this line throwing error
     }
@@ -317,4 +317,4 @@ function UserRegisteration() {
   )
 }
 
-export default UserRegisteration;
+export default UserRegistration;

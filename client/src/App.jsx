@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./pages/Login";
 import Explore from "./pages/Explore";
 import SignUp from "./pages/SignUp";
@@ -15,12 +15,14 @@ function App() {
       <AuthProvider>
         <Navbar />
         <Routes>
+          <Route path="/explore" exact element={<Explore />} />
           <Route path="/login" exact element={<Login />} />
-          <Route path="/registeration" exact element={<SignUp />} />
+          <Route path="/registration" exact element={<SignUp />} />
           <Route path="/forgetPassword" exact element={<ForgetPassword />} />
           <Route path="/dashboard" exact element={<DashboardPage />} />
-          <Route path="/explore" exact element={<Explore />} />
           <Route path="/viewRecipeDetails/:recipeID" element={<ViewRecipeDetails />} />
+          <Route
+                 path="/" element={<Navigate to="/explore" replace />} />
         </Routes>
       </AuthProvider>
     </Router>
