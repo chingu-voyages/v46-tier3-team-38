@@ -1,6 +1,8 @@
 # Recigo 🍳
 Live demo: [Recigo](https://recipo-frontend.onrender.com)
-![image]()
+
+![image](./client/assets/explore.png) ![image](./client/assets/recipe-detail.png) ![image](./client/assets/signup.png)
+
  **Recigo** is your ultimate culinary companion for finding delicious recipes tailored to your preferences. With a wide range of filters, including meal type, health restrictions, diet options, and dish types, **Recigo** makes it effortless to discover the perfect recipe for any occasion."
 
 # Features
@@ -24,18 +26,33 @@ Live demo: [Recigo](https://recipo-frontend.onrender.com)
    ```bash
    $cd server
    ```
-2.  Start backend server.
+2. Create `.env` file and include following information. 
+   You can create your own `JWT_SECRET_KEY`. 
+   Please create your own `EDAMAM_APP_ID`and `EDAMAM_APP_KEY` at [edamam.com/](https://www.edamam.com/)
+   ```bash
+   EDAMAM_APP_ID=XXXX
+   EDAMAM_APP_KEY=XXXXX
+   JWT_SECRET_KEY=XXXXX
+   DATABASE=postgres://XXXXXX
+   ```
+3.  Start backend server.
     ```bash
     $nodemon app.js
     ```
-3. server will start up on `[localhost:3000](http://localhost:3000)`
+4. server will start up on `[localhost:3000](http://localhost:3000)`
 
 #### Starting frontend
 1. Navigate to frontend folder
    ```bash
    $cd client
    ```
-2. Run vite with below command and open [http://localhost:5173/](http://localhost:5173/) to view it in your browser.
+2. Create `.env` file and include following information. 
+   `VITE_JWT_SECRET_KEY` should be the same as `JWT_SECRET_KEY` on the server side `.env`. 
+   ```bash
+   VITE_ENVIRONMENT=development
+   VITE_JWT_SECRET_KEY=XXXXXXX
+   ```
+3. Run vite with below command and open [http://localhost:5173/](http://localhost:5173/) to view it in your browser.
    ```bash
    $npm run dev
    ```
