@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        console.log(`auth use effect ran`)
         isUserLoggedIn();
     }, [])
 
