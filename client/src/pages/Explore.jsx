@@ -33,6 +33,7 @@ export default function Explore() {
         if(isFilter){
             console.log(searchFilter);
         }
+        setSearchOn(false);
     },[isFilter,searchFilter])
 
     useEffect(()=>{
@@ -49,7 +50,7 @@ export default function Explore() {
                 const response = await BackendAPI.searchRecipe(term);
                 // console.log("🚀 ~ file: Explore.jsx:47 ~ getRecipes ~ response:", response)
                 setRecipes(response);
-                setSearchOn(false);
+                // setSearchOn(false);
             } catch(e){
                 console.log('something went wrong inside useEffect', e)
             }
@@ -85,6 +86,7 @@ export default function Explore() {
 
     function handleChange(e) {
         setSearchTerm(e.target.value);
+        setSearchOn(false);
         setError("");
     }
 

@@ -59,8 +59,8 @@ function loggedIn(pathname, showLogoutModal, setShowLogoutModal) {
             </li>
             <li className="flex items-center justify-center px-5 hover:bg-gray-50 group" >
                 <NavLink to="/" className="flex flex-col items-center" >
-                    <FaRegSmile className={`${pathname.includes('/') ? 'text-teal-700 p-1  rounded-md shadow' : ''} w-8 h-8`} />
-                    <span className={`${pathname.includes('/') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
+                    <FaRegSmile className={`${pathname.includes('/profile') ? 'text-teal-700 p-1  rounded-md shadow' : ''} w-8 h-8`} />
+                    <span className={`${pathname.includes('/profile') ? 'text-teal-700' : ''} text-sm text-gray-500 group-hover:text-green-600 `}>
                         Profile
                     </span>
                 </NavLink>
