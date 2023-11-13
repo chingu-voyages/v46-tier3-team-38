@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
         const secret = new TextEncoder().encode(
             import.meta.env.VITE_JWT_SECRET_KEY
         );
-        console.log(token);
+        // console.log(token);
         if (token != null) {
             try {
                 const decodedtoken = await jwtVerify(token, secret);
